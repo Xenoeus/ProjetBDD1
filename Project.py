@@ -1,3 +1,7 @@
 class Project(Expression):
-    
-    def __init__(self, attribut, relation):
+
+    """
+    Cette classe represente la projection en SPJRUD.
+    """
+    #attributs sera un tableau d'attributs
+    def __init__(self, attributs, relation): 
