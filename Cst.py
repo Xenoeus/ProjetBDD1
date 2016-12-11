@@ -9,4 +9,4 @@ class Cst(Expression):
       self.nom = nom
 
    def __str__(self):
-      return self.nom
+      return "'"+self.nom+"'"

@@ -13,3 +13,5 @@ class Expression:
 
    def print_query(self):
       print(self.query)
+   def string_query(self):
+      return (self.query)
