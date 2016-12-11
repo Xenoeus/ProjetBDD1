@@ -3,13 +3,13 @@ from Relation import Relation
 
 class Expression:
 
-    """
-    Cette classe represente une expression SPJRUD. C'est la classe mere de tout les objets
-    de notre AST.
-    """
+   """
+   Cette classe represente une expression SPJRUD. C'est la classe mere de tout les objets
+   de notre AST.
+   """
 
-    def __init__(self, relation):
-    	self.relation = relation
+   def __init__(self, relation):
+      self.relation = relation
 
-    def print_query(self):
-    	print(self.query)
+   def print_query(self):
+      print(self.query)
