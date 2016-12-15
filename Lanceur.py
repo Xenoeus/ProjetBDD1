@@ -34,6 +34,7 @@ c.execute(stri)
 print(c.fetchall())
 
 Union(Relation('CITY',['test1']), Relation('COUNTRY',['test2'])).print_query()
+#Union('bou', 1).print_query()
 
 Union(Select(Eq(Attribut('a'), Cst('b')), Relation('NomRelation', ['test3'])), Relation('COUNTRY',['test2'])).print_query()
 
