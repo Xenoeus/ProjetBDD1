@@ -14,6 +14,8 @@ class Rename(Expression):
       self.relation = relation
       self.verifieAttributs()
       self.query = "SELECT "+str(self.nom_initial)+" AS "+str(self.nouveau_nom)+" FROM "+str(self.relation)
+      self.colonnes = relation.colonnes
+      self.rename()
 
    def __str__(self):
       return self.query
@@ -29,3 +31,8 @@ class Rename(Expression):
          raise TypeError("L'attribut nom_initial doit etre un objet de type Attribut")
       elif not isinstance(self.nouveau_nom, Cst):
          raise TypeError("L'attribut nouveau_nom doit etre un objet de type Cst")
+
+   def rename(self):
+      for i in self.colonnes:
+         if (i == self.nouveau_nom):
+            self.colonnes[i] = self.nouveau_nom

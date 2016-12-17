@@ -12,6 +12,7 @@ class Select(Expression):
       self.relation = relation
       self.verifieAttributs()
       self.query = "SELECT * FROM "+str(self.relation)+" WHERE "+str(self.egalite)
+      self.colonnes = relation.colonnes
 
    def __str__(self):
       return self.query

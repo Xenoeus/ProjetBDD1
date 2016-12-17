@@ -27,16 +27,29 @@ c.execute("INSERT INTO CITY VALUES ('Brussels','Belgium',370.6)")
 c.execute("INSERT INTO COUNTRY VALUES ('Belgium','Brussels',10225.6,'EUR')")
 """
 connection.commit()
+
 stri = Select(Eq(Attribut('Name'), Cst('Bergen')), Relation('CITY', ['test3'])).string_query()
 print(stri)
 c.execute(stri)
 
 print(c.fetchall())
-
-Union(Relation('CITY',['test1']), Relation('COUNTRY',['test2'])).print_query()
-#Union('bou', 1).print_query()
-
-Union(Select(Eq(Attribut('a'), Cst('b')), Relation('NomRelation', ['test3'])), Relation('COUNTRY',['test2'])).print_query()
+try:
+   Union(Relation('CITY',['test1']), Relation('COUNTRY',['test2'])).print_query()
+   #Union('bou', 1).print_query()
+except TypeError as inst:
+    print(inst.args)
+try:
+   Difference(Relation('CITY',['test1']), Relation('COUNTRY',['test2'])).print_query()
+except TypeError as inst:
+    print(inst.args)
+try:
+   Difference(Select(Eq(Attribut('Name'), Cst('Bergen')), Relation('CITY', ['test3'])), Relation('COUNTRY',['test2'])).print_query()
+except TypeError as inst:
+    print(inst.args)
+try:
+   Union(Select(Eq(Attribut('a'), Cst('b')), Relation('NomRelation', ['test3'])), Relation('COUNTRY',['test2'])).print_query()
+except TypeError as inst:
+   print(inst.args)
 
 connection.rollback()
 connection.close()

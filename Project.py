@@ -12,6 +12,7 @@ class Project(Expression):
       self.relation = relation
       self.verifieAttributs()
       self.query = "SELECT "+str(self.attributs)+" FROM "+str(self.relation)
+      self.colonnes = attributs
 
    def __str__(self):
       return self.query
