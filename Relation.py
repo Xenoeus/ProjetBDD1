@@ -1,4 +1,6 @@
+from SPRJUDToSQL import *
 import sqlite3
+
 class Relation:
    """
    Cette classe represente une relation en SPJRUD ou une table en SQL.
