@@ -26,7 +26,12 @@ class Join(Expression):
          raise TypeError("L'attribut relation1 doit etre un objet de type Relation ou Expression")
       elif not isinstance(self.relation2, Relation) and not isinstance(self.relation2, Expression):
          raise TypeError("L'attribut relation2 doit etre un objet de type Relation ou Expression")
+
+
    def changementColonnes(self, relation1 , relation2):
+      """
+      Cette méthode fais la jointure des colonnes des deux relations
+      """
       self.colonnes = []
       colrelation1 = self.relation1
       colrelation2 = self.relation2

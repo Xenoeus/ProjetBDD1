@@ -33,6 +33,9 @@ class Rename(Expression):
          raise TypeError("L'attribut nouveau_nom doit etre un objet de type Cst")
 
    def rename(self):
+      """
+      Renomme la colonne qui doit etre renommee
+      """
       for i in self.colonnes:
          if (i == self.nouveau_nom):
             self.colonnes[i] = self.nouveau_nom

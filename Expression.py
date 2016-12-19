@@ -13,6 +13,7 @@ class Expression:
       self.relation = relation
       self.colonnes = relation.colonnes
 
+
    def print_query(self):
       print(self.query)
    def string_query(self):

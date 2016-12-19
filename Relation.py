@@ -36,8 +36,9 @@ class Relation:
 
    def relationColonnes(self,nom):
       """
-      Cette methode cree un tableau avec les nom des colonnes de la ration
+      Cette methode cree un tableau avec les nom des colonnes de la relation
       """
+      print("first relation")
       connection = sqlite3.connect('test.db')
       c = connection.cursor()
       commande = "PRAGMA table_info("+str(nom)+");"
