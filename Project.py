@@ -11,7 +11,8 @@ class Project(Expression):
       self.attributs = attributs
       self.relation = relation
       self.verifieAttributs()
-      self.query = "SELECT "+str(self.attributs)+" FROM "+str(self.relation)
+      self.compile()
+      self.query = "SELECT "+self.affichageListe+" FROM "+str(self.relation)
       self.colonnes = attributs
 
    def __str__(self):
@@ -30,3 +31,12 @@ class Project(Expression):
          for e in self.attributs:
             if not isinstance(self.attributs[e], Attribut):
                raise TypeError("Les elements de la liste du premier attribut de Project doivent etre de type Attribut")
+
+   def compile(self):
+      """
+      Cette methode permet l'affichage des elements de la liste d'attributs
+      """
+      self.affichageListe = ""
+      for i in self.attributs
+         self.affichageListe = self.affichageListe + str(i) + ","
+      self.affichageListe = self.affichageListe[:len(self.affichageListe)-1]
