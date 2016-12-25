@@ -1,54 +1,47 @@
-from Expression import Expression
-from Eq import Eq
-from Relation import Relation
-from Select import Select
-from Project import Project
-from Join import Join
-from Rename import Rename
-from Union import Union
-from Difference import Difference
-from Attribut import Attribut
-from Cst import Cst
 import sqlite3
+from Traducteur import *
 
 class SPRJUDToSQL():
 
-   def selectDataBase(self, dataBase):
+   def selectDataBase(self, dataBaseUse):
       """
       Cette methode permet de définir la base de donnée utilisée
       """
-      self.dataBase = dataBase
+      global dataBase
+      dataBase = dataBaseUse
 
    def traduction(self, SPRJUD):
       """
       Cette methode permet de traduire une requête de sprjud en sql elle revoit true si l'opération c'est bien passée et false sinon
       """
       try:
-         SPRJUD.print_query()
-         return true
+         traducteur = Traducteur()
+         print(traducteur.traduction(SPRJUD))
+         return True
       except TypeError as inst:
          print(inst.args)
-         return false
+         return False
 
    def traductionAndExecution(self, SPRJUD):
       """
       Cette methode permet de traduire et d'executer une requête de sprjud en sql elle revoit true si l'opération c'est bien passée et false sinon
       """
-      connection = sqlite3.connect('test.db')
+      connection = sqlite3.connect(dataBase)
       c = connection.cursor()
       connection.commit()
       
       try:
-         stri = SPRJUD.string_query()
+         traducteur = Traducteur()
+         stri = traducteur.traduction(SPRJUD)
          c.execute(stri)
-         """
-         gollum = c.getColumnNames()
+         gollum = c.description
+         nomColonne = ""
          for i in gollum:
-             print(i[1])
+             nomColonne+=i[0]
+         print(nomColonne)
          borimir = c.fetchall()
          for i in borimir:
              print(i)
-        """
       except TypeError as inst:
          print(inst.args)
          return False

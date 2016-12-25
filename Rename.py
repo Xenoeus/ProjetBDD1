@@ -12,9 +12,18 @@ class Rename(Expression):
       self.nom_initial = nom_initial
       self.nouveau_nom = nouveau_nom
       self.relation = relation
+      self.colonnes = relation.colonnes
+      self.nomExpression = "Rename("+ nom_initial+","+nouveau_nom+","+relation.nomExpression+")"
+
+
+   def autorisation(self):
+      if isinstance(self.relation, Expression):
+         self.relation.autorisation()
+      if isinstance(self.relation1, Relation):
+         if (self.relation.verifieTable()):
+            raise TypeError("Ce nom de relation n'est pas correct ou cette relation n'existe pas :\"" + self.relation.nom + "\"")
       self.verifieAttributs()
       self.query = "SELECT "+str(self.nom_initial)+" AS "+str(self.nouveau_nom)+" FROM "+str(self.relation)
-      self.colonnes = relation.colonnes
       self.rename()
 
    def __str__(self):
@@ -38,4 +47,4 @@ class Rename(Expression):
       """
       for i in self.colonnes:
          if (i == self.nouveau_nom):
-            self.colonnes[i] = self.nouveau_nom
+            self.colonnes[i][0] = self.nouveau_nom

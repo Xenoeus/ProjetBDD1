@@ -7,6 +7,7 @@ class Attribut(Expression):
    """
    def __init__(self, nom):
       self.nom = nom
+      self.nomExpression = "Attribut("+nom+")"
 
    def __str__(self):
       return self.nom

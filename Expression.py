@@ -9,7 +9,6 @@ class Expression:
    """
 
    def __init__(self, relation):
-      print(string(relation))
       self.relation = relation
       self.colonnes = relation.colonnes
 

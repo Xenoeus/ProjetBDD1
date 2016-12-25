@@ -11,6 +11,7 @@ class Eq(Expression):
    def __init__(self, attribut1, attribut2):
       self.attribut1 = attribut1
       self.attribut2 = attribut2
+      self.nomExpression = "Eq("+ attribut1.nomExpression+","+ attribut2.nomExpression+")"
 
    def __str__(self):
       return str(self.attribut1)+" = "+str(self.attribut2)

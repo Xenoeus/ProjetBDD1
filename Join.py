@@ -9,11 +9,24 @@ class Join(Expression):
    def __init__(self, relation1, relation2):
       self.relation1 = relation1
       self.relation2 = relation2
-      self.verifieAttributs()
-      self.query = "SELECT * FROM "+str(self.relation1)+" NATURAL JOIN "+str(self.relation2)
       changementColonnes(relation1, relation2)
+      self.nomExpression = "Join("+relation1.nomExpression+","+relation2.nomExpression+")"
       
 
+   def autorisation(self):
+      if isinstance(self.relation1, Expression):
+         self.relation1.autorisation()
+      if isinstance(self.relation2, Expression):
+         self.relation2.autorisation()
+      if isinstance(self.relation1, Relation):
+         if (self.relation1.verifieTable()):
+            raise TypeError("Ce nom de relation n'est pas correct ou cette relation n'existe pas :\"" + self.relation1.nom + "\"")
+      if isinstance(self.relation2, Relation):
+         if (self.relation2.verifieTable()):
+            raise TypeError("Ce nom de relation n'est pas correct ou cette relation n'existe pas :\"" + self.relation2.nom + "\"")
+      self.verifieAttributs()
+      self.query = "SELECT * FROM "+str(self.relation1)+" NATURAL JOIN "+str(self.relation2)
+         
    def __str__(self):
       return self.query
 

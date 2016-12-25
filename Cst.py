@@ -7,6 +7,7 @@ class Cst(Expression):
    """
    def __init__(self, nom):
       self.nom = nom
+      self.nomExpression = "Cst("+nom+")"
 
    def __str__(self):
       return "'"+self.nom+"'"
