@@ -16,6 +16,9 @@ class Project(Expression):
       self.nomExpression = "Project("+str(attr)+","+relation.nomExpression+")"
 
    def autorisation(self):
+      """
+      Cette methode verifie que toutes les conditions sont respectee, après cela elle traduis l'expression.
+      """
       if isinstance(self.relation, Expression):
          self.relation.autorisation()
       if isinstance(self.relation, Relation):
@@ -23,7 +26,7 @@ class Project(Expression):
             raise TypeError("Ce nom de relation n'est pas correct ou cette relation n'existe pas :\"" + self.relation.nom + "\"")
       self.verifieAttributs()
       self.colonnes = self.selectionColonnes()
-      self.compile()
+      self.compiler()
       self.query = "SELECT "+self.affichageListe+" FROM "+str(self.relation)
 
    def __str__(self):
@@ -45,7 +48,7 @@ class Project(Expression):
          if not (self.verifieColonnes(g)):
             raise TypeError(g.nom + " n'est pas un nom de colonnes existant dans la relation/l'expression:" + self.relation.nom)
 
-   def compile(self):
+   def compiler(self):
       """
       Cette methode permet l'affichage des elements de la liste d'attributs
       """
@@ -55,12 +58,18 @@ class Project(Expression):
       self.affichageListe = self.affichageListe[:len(self.affichageListe)-1]
 
    def verifieColonnes(self, nom):
+      """
+      Cette methode verifie qu'une colonne existe dans la relation/ l'expression donnee. Elle retourne True si elle existe false sinon
+      """
       for i in self.relation.colonnes:
          if(nom.nom == i[0]):
             return True
       return False
 
    def selectionColonnes(self):
+      """
+      Cette methode permet de selectionner les colonnes demandee par attributs
+      """
       colonnes = []
       for nom in self.attributs:
          for i in self.relation.colonnes:

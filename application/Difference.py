@@ -13,6 +13,9 @@ class Difference(Expression):
       self.nomExpression = "Difference("+relation1.nomExpression+","+relation2.nomExpression+")"
 
    def autorisation(self):
+      """
+      Cette methode verifie que toutes les conditions sont respectee, après cela elle traduis l'expression.
+      """
       if isinstance(self.relation1, Expression):
          self.relation1.autorisation()
       if isinstance(self.relation2, Expression):
@@ -42,5 +45,5 @@ class Difference(Expression):
          raise TypeError("Les deux expression(s)/relation(s) de : Difference(" + self.relation1.nomExpression + "," + self.relation2.nomExpression + ") , doivent avoir le même nombre de colonnes")
       for i in range(len(self.relation1.colonnes)):
          if(self.relation1.colonnes[i][1]!=self.relation2.colonnes[i][1]):
-            raise TypeError("Les deux expression(s)/relation(s) de : Difference(" + self.relation1.nomExpression + "," + self.relation2.nomExpression + ") , doivent avoir le même types de colonnes \n La colonnes:"+ self.relation1.colonnes[i][0] +" du type: "+self.relation1.colonnes[i][1]+" et la colonnes:"+ self.relation2.colonnes[i][0] +" du type: "+self.relation2.colonnes[i][1]+" ne sont pas du même type")
+            raise TypeError("Les deux expression(s)/relation(s) de : Difference(" + self.relation1.nomExpression + "," + self.relation2.nomExpression + ") , doivent avoir le même types de colonne \n La colonne:"+ self.relation1.colonnes[i][0] +" du type: "+self.relation1.colonnes[i][1]+" et la colonne:"+ self.relation2.colonnes[i][0] +" du type: "+self.relation2.colonnes[i][1]+" ne sont pas du même type")
 

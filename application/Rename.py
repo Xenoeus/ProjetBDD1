@@ -17,6 +17,9 @@ class Rename(Expression):
 
 
    def autorisation(self):
+      """
+      Cette methode verifie que toutes les conditions sont respectee, après cela elle traduis l'expression.
+      """
       if isinstance(self.relation, Expression):
          self.relation.autorisation()
       if isinstance(self.relation1, Relation):

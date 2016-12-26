@@ -33,7 +33,7 @@ class Relation:
 
    def relationColonnes(self,nom):
       """
-      Cette methode cree un tableau avec les nom des colonnes de la relation
+      Cette methode cree un tableau avec les nom des colonnes de la relation et leur types
       """
       connection = sqlite3.connect(SPRJUDToSQL.dataBase)
       c = connection.cursor()

@@ -19,6 +19,6 @@ class Traducteur():
       Cette methode permet de traduire une requête de sprjud en sql elle revoit true si l'opération c'est bien passée et false sinon
       """
       SPRJUD.autorisation()
-      return SPRJUD.string_query()
+      return SPRJUD
 
 
